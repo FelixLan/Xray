@@ -22,7 +22,7 @@
 ## 执行安装脚本(建议采用ubantu系统)   
 
 ```   
-curl https://raw.githubusercontent.com/FelixLan/v2ray/master/install.sh | bash
+curl https://raw.githubusercontent.com/FelixLan/Xray/main/install.sh | bash
 ```   
 
 
