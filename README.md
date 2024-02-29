@@ -21,7 +21,9 @@
 
 ## 执行安装脚本(建议采用ubantu系统)   
 
-`curl https://raw.githubusercontent.com/FelixLan/v2ray/master/install.sh | bash`   
+```   
+curl https://raw.githubusercontent.com/FelixLan/v2ray/master/install.sh | bash
+```   
 
 
 * 安装成功，如图所示：  
@@ -51,11 +53,11 @@
 
 # 帮助
 
-使用: `v2ray help`
+使用: `Xray help`
 
 ```
-V2Ray script v4.0 by 233boy
-Usage: v2ray [options]... [args]...
+XRay script v4.0 by 233boy
+Usage: Xray [options]... [args]...
 
 基本:
    v, version                                      显示当前版本
@@ -116,6 +118,4 @@ Usage: v2ray [options]... [args]...
    h, help                                         显示此帮助界面
 
 谨慎使用 del, ddel, 此选项会直接删除配置; 无需确认
-反馈问题) https://github.com/233boy/v2ray/issues
-文档(doc) https://233boy.com/v2ray/v2ray-script/
 ```
