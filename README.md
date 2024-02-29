@@ -1,64 +1,66 @@
 # 介绍
 
-最好用的 Xray 一键安装脚本 & 管理脚本
+**全网最好用的 XRay 一键安装脚本 &amp; 管理脚本**   
+
+**小白也能轻松搭建自己的梯子、科学上网、魔法上网**
 
 # 特点
 
-- 快速安装
-- 无敌好用
+- 自动化安装
 - 零学习成本
-- 自动化 TLS
-- 简化所有流程
-- 屏蔽 BT
-- 屏蔽中国 IP
-- 使用 API 操作
-- 兼容 Xray 命令
-- 强大的快捷参数
-- 支持所有常用协议
-- 一键添加 VLESS-REALITY (默认)
-- 一键添加 Shadowsocks 2022
-- 一键添加 VMess-(TCP/mKCP/QUIC)
-- 一键添加 VMess-(WS/H2/gRPC)-TLS
-- 一键添加 VLESS-(WS/H2/gRPC)-TLS
-- 一键添加 Trojan-(WS/H2/gRPC)-TLS
-- 一键添加 VMess-(TCP/mKCP/QUIC) 动态端口
+- 支持所有主流协议
 - 一键启用 BBR
 - 一键更改伪装网站
-- 一键更改 (端口/UUID/密码/域名/路径/加密方式/SNI/动态端口/等...)
-- 还有更多...
+- 一键变更 (端口/UUID/密码/域名/路径/加密方式/SNI/动态端口/等...)
 
-# 设计理念
+# 脚本使用说明
+## 安装准备
+* 在执行脚本之前，先去租一个国外的vps服务器
+   1. 推荐一下我自己用的[服务器厂商vultr](https://www.vultr.com/?ref=9594735)，特点是**免费更换ip，按需计费，部署简单，可以用支付宝结算**
+* 先下载一个ssh客户端，方便与服务器进行交互，推荐用**MobaXterm**，特点是**占用内存小，轻便好用**
 
-设计理念为：**高效率，超快速，极易用**
+## 执行安装脚本(建议采用ubantu系统)   
 
-脚本基于作者的自身使用需求，以 **多配置同时运行** 为核心设计
+`curl https://raw.githubusercontent.com/FelixLan/v2ray/master/install.sh | bash`   
 
-并且专门优化了，添加、更改、查看、删除、这四项常用功能
 
-你只需要一条命令即可完成 添加、更改、查看、删除、等操作
+* 安装成功，如图所示：  
+![image](https://github.com/FelixLan/v2ray/assets/44452818/6e961bb5-e493-42dd-a55c-e20b7136addb)   
 
-例如，添加一个配置仅需不到 1 秒！瞬间完成添加！其他操作亦是如此！
+* 安装成功后，输出一系列服务端信息，先别急着配置客户端
+  
+* 先测试ip和端口是否能正常链接使用(测试入口：https://tcp.ping.pe/)
+* 测试方法，直接输入ip:端口(示例：`77.22.11.22:8766`)，点击Go
+   1. 如果显示sucessflu,则进行下一步   
+   2. 如果显示failed,则先排查端口问题
 
-脚本的参数非常高效率并且超级易用，请掌握参数的使用
+**注意：一定要确保端口没问题，才能进行下一步**   
+* 导致端口异常的原因一般是：
+   1. 防火墙没关(解决方式：关闭服务器的防火墙)
+   2. 端口被占用(解决方式：换个端口重新测试、或者杀掉占用端口的进程)
 
-# 文档
+* 排查清楚了，这时候将最新的配置信息，直接复制vmess唯一链接，通过剪切板导入客户端，启用客户端，应该就能正常访问Google
 
-安装及使用：https://233boy.com/xray/xray-script/
+**部署完成，就这么简单，愉快的冲浪吧**
+
+>如果这时候仍无法正常使用Xray访问Google，建议使用 `xray add ss auto auto aes-256-gcm` 命令添加一个 SS 看看能不能正常访问Google
+   1. 如果能正常访问，证明服务端配置没有问题
+   2. 则大概率是服务端与客户端的内核版本不兼容(解决方式：换其他客户端、或者降低服务端的内核版本：`v2ray update core 4.45.2`)
+   3. **备注**:请尽量将客户端内核和服务器端内核保持一致！内核版本低于 5 可能会出现莫名其妙的问题
+
 
 # 帮助
 
-使用：`xray help`
+使用: `v2ray help`
 
 ```
-Xray script v1.0 by 233boy
-Usage: xray [options]... [args]...
+V2Ray script v4.0 by 233boy
+Usage: v2ray [options]... [args]...
 
 基本:
    v, version                                      显示当前版本
    ip                                              返回当前主机的 IP
-   pbk                                             同等于 xray x25519
    get-port                                        返回一个可用的端口
-   ss2022                                          返回一个可用于 Shadowsocks 2022 的密码
 
 一般:
    a, add [protocol] [args... | auto]              添加配置
@@ -78,10 +80,8 @@ Usage: xray [options]... [args]...
    port [name] [port | auto]                       更改端口
    path [name] [path | auto]                       更改路径
    passwd [name] [password | auto]                 更改密码
-   key [name] [Private key | atuo] [Public key]    更改密钥
    type [name] [type | auto]                       更改伪装类型
    method [name] [method | auto]                   更改加密方式
-   sni [name] [ ip | domain]                       更改 serverName
    seed [name] [seed | auto]                       更改 mKCP seed
    new [name] [...]                                更改协议
    web [name] [domain]                             更改伪装网站
@@ -107,15 +107,15 @@ Usage: xray [options]... [args]...
    debug [name]                                    显示一些 debug 信息, 仅供参考
    gen [...]                                       同等于 add, 但只显示 JSON 内容, 不创建文件, 测试使用
    no-auto-tls [...]                               同等于 add, 但禁止自动配置 TLS, 可用于 *TLS 相关协议
-   xapi [...]                                      同等于 xray api, 但 API 后端使用当前运行的 Xray 服务
+   xapi [...]                                      同等于 v2ray api, 但 API 后端使用当前运行的 V2Ray 服务
 
 其他:
    bbr                                             启用 BBR, 如果支持
-   bin [...]                                       运行 Xray 命令, 例如: xray bin help
-   api, x25519, tls, run, uuid  [...]              兼容 Xray 命令
+   bin [...]                                       运行 V2Ray 命令, 例如: v2ray bin help
+   api, convert, tls, run, uuid  [...]             兼容 V2Ray 命令
    h, help                                         显示此帮助界面
 
 谨慎使用 del, ddel, 此选项会直接删除配置; 无需确认
-反馈问题) https://github.com/233boy/xray/issues
-文档(doc) https://233boy.com/xray/xray-script/
+反馈问题) https://github.com/233boy/v2ray/issues
+文档(doc) https://233boy.com/v2ray/v2ray-script/
 ```
